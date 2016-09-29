@@ -28,6 +28,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-bin  
-*.suo  
-obj  
+*
