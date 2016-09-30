@@ -14,13 +14,10 @@ using UnityEngine;
 using System.Collections;
 
 public class SkillBase : MonoBehaviour {			
-	
-void Start () {
 
-	}
-			
-void Update () {
-	
-	}
+	#region 技能字段
 
+
+
+	#endregion
 }
