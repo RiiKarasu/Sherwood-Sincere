@@ -13,13 +13,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class CharacterBase : MonoBehaviour {			
 
-	enum Race 
-	{
-		Bunny,
-		Warthog
-	}
+public class CharacterBase : MonoBehaviour {			
 
 	#region 角色属性字段
 	/// <summary>
@@ -30,7 +25,7 @@ public class CharacterBase : MonoBehaviour {
 	/// <summary>
 	/// 角色种族
 	/// </summary>
-	Race race;
+	string race;
 	/// <summary>
 	/// 角色血量
 	/// </summary>
@@ -57,6 +52,18 @@ public class CharacterBase : MonoBehaviour {
 	/// <value>The move speed.</value>
 	float moveSpeed{set;get;}
 	/// <summary>
+	/// 当前移动速度
+	/// </summary>
+	float curMoveSpeed;
+	/// <summary>
+	/// 当前攻击速度
+	/// </summary>
+	float curAttackSpeed;
+	/// <summary>
+	/// buff计时器
+	/// </summary>
+	float timer;
+	/// <summary>
 	/// 角色技能
 	/// </summary>
 	SkillBase[] skills;
@@ -74,12 +81,19 @@ public class CharacterBase : MonoBehaviour {
 	public float roSpeed = 180f;
 
 
+
 	#endregion
 
 	#region 构造方法
+	/// <summary>
+	/// 实例化角色方法
+	/// </summary>
+	/// <param name="id">Identifier.</param>
+	/// <param name="ant">Ant.</param>
+	/// <param name="aud">Aud.</param>
 	public CharacterBase(int id,Animator ant,AudioSource aud){
 		name = ShareDataBase.sDb.SelectFieldSql ("SELECT name FROM CharactorBase WHERE id="+id).ToString();
-		//		race = ShareDataBase.sDb.SelectFieldSql ("SELECT race FROM CharactorBase WHERE id =" + id).ToString;
+		race = ShareDataBase.sDb.SelectFieldSql ("SELECT race FROM CharactorBase WHERE id =" + id).ToString();
 		hp = float.Parse(ShareDataBase.sDb.SelectFieldSql("SELECT hp FROM CharactorBase WHERE id ="+id).ToString());
 		attack = float.Parse (ShareDataBase.sDb.SelectFieldSql("SELECT attack FROM CharactorBase WHERE id="+id).ToString());
 		attackOfAera = float.Parse (ShareDataBase.sDb.SelectFieldSql("SELECT attackOfAera FROM CharactorBase WHERE id="+id).ToString());
@@ -88,10 +102,22 @@ public class CharacterBase : MonoBehaviour {
 		this.ant = ant;
 		this.aud = aud;
 	}
+	/// <summary>
+	/// 获取角色信息方法
+	/// </summary>
+	/// <param name="id">Identifier.</param>
+	public CharacterBase(int id){
+		name = ShareDataBase.sDb.SelectFieldSql ("SELECT name FROM CharactorBase WHERE id="+id).ToString();
+		hp = float.Parse(ShareDataBase.sDb.SelectFieldSql("SELECT hp FROM CharactorBase WHERE id ="+id).ToString());
+		attack = float.Parse (ShareDataBase.sDb.SelectFieldSql("SELECT attack FROM CharactorBase WHERE id="+id).ToString());
+		attackOfAera = float.Parse (ShareDataBase.sDb.SelectFieldSql("SELECT attackOfAera FROM CharactorBase WHERE id="+id).ToString());
+		attackSpeed = float.Parse (ShareDataBase.sDb.SelectFieldSql("SELECT attackSpeed FROM CharactorBase WHERE id="+id).ToString());
+		moveSpeed = float.Parse (ShareDataBase.sDb.SelectFieldSql("SELECT moveSpeed FROM CharactorBase WHERE id="+id).ToString());
+	}
+
 	#endregion
 
 	#region 公共方法
-
 	/// <summary>
 	/// 角色受到攻击
 	/// </summary>
@@ -100,10 +126,33 @@ public class CharacterBase : MonoBehaviour {
 		hp -= damage;
 		ant.SetTrigger (HashID.UnderAttack);
 	}
-		
+	/// <summary>
+	/// 角色死亡方法
+	/// </summary>
+	/// <param name="DeathAudio">Death audio.</param>
 	public void PlayerDead(AudioClip DeathAudio){
 		ant.SetBool (HashID.PlayerDeath,true);
 		AudioSource.PlayClipAtPoint (DeathAudio,transform.position);
+	}
+	/// <summary>
+	///  受技能效果影响
+	/// </summary>
+	/// <param name="msEffect">移速减少.</param>
+	/// <param name="asEffect">攻速减少.</param>
+	/// <param name="lastDamage">持续伤害.</param>
+	/// <param name="time">效果持续时间.</param>
+	public void EffectTimeCast(float msEffect,float asEffect,float lastDamage,float time){
+		timer+= Time.deltaTime;
+		if (timer < time) {
+			curAttackSpeed =attackSpeed- asEffect;
+			curMoveSpeed =moveSpeed- msEffect;
+			hp -= lastDamage;
+			EffectTimeCast (msEffect,asEffect,lastDamage,time);
+		} else {
+			curMoveSpeed = moveSpeed;
+			curAttackSpeed = attackSpeed;
+			timer = 0;
+		}
 	}
 
 	#endregion
