@@ -14,8 +14,12 @@ using UnityEngine;
 using System.Collections;
 
 
+<<<<<<< HEAD
+public class CharacterBase{			
+=======
 public class CharacterBase : MonoBehaviour
 {
+>>>>>>> db9ece4fccad673d01368ab9220e3d1a9291fde0
 
 	#region 角色属性字段
 
@@ -23,6 +27,13 @@ public class CharacterBase : MonoBehaviour
 	/// 角色名称
 	/// </summary>
 	/// <value>The name.</value>
+<<<<<<< HEAD
+	public string name{ set; get;}
+	/// <summary>
+	/// 角色种族
+	/// </summary>
+	public string race;
+=======
 	string name{ set; get; }
 
 	/// <summary>
@@ -30,34 +41,54 @@ public class CharacterBase : MonoBehaviour
 	/// </summary>
 	string race;
 
+>>>>>>> db9ece4fccad673d01368ab9220e3d1a9291fde0
 	/// <summary>
 	/// 角色血量
 	/// </summary>
 	/// <value>The hp.</value>
+<<<<<<< HEAD
+	public float hp{ set; get;}
+=======
 	float hp{ set; get; }
 
+>>>>>>> db9ece4fccad673d01368ab9220e3d1a9291fde0
 	/// <summary>
 	/// 角色攻击力
 	/// </summary>
 	/// <value>The attack.</value>
+<<<<<<< HEAD
+	public float attack{ set; get;}
+=======
 	float attack{ set; get; }
 
+>>>>>>> db9ece4fccad673d01368ab9220e3d1a9291fde0
 	/// <summary>
 	/// 角色攻击范围
 	/// </summary>
 	/// <value>The attack of aera.</value>
+<<<<<<< HEAD
+	public float attackOfAera{ set; get;}
+=======
 	float attackOfAera{ set; get; }
 
+>>>>>>> db9ece4fccad673d01368ab9220e3d1a9291fde0
 	/// <summary>
 	/// 角色攻击速度
 	/// </summary>
 	/// <value>The attack speed.</value>
+<<<<<<< HEAD
+	public float attackSpeed{ set; get;}
+=======
 	float attackSpeed{ set; get; }
 
+>>>>>>> db9ece4fccad673d01368ab9220e3d1a9291fde0
 	/// <summary>
 	/// 角色移动速度
 	/// </summary>
 	/// <value>The move speed.</value>
+<<<<<<< HEAD
+	public float moveSpeed{set;get;}
+=======
 	float moveSpeed{ set; get; }
 
 	/// <summary>
@@ -90,6 +121,7 @@ public class CharacterBase : MonoBehaviour
 	public float roSpeed = 180f;
 
 
+>>>>>>> db9ece4fccad673d01368ab9220e3d1a9291fde0
 
 	#endregion
 
@@ -101,6 +133,16 @@ public class CharacterBase : MonoBehaviour
 	/// <param name="id">Identifier.</param>
 	/// <param name="ant">Ant.</param>
 	/// <param name="aud">Aud.</param>
+<<<<<<< HEAD
+	public CharacterBase(int id){
+		name = ShareDataBase.sDb.SelectFieldSql ("SELECT name FROM CharactorBase WHERE id="+id).ToString();
+		race = ShareDataBase.sDb.SelectFieldSql ("SELECT race FROM CharactorBase WHERE id =" + id).ToString();
+		hp = float.Parse(ShareDataBase.sDb.SelectFieldSql("SELECT hp FROM CharactorBase WHERE id ="+id).ToString());
+		attack = float.Parse (ShareDataBase.sDb.SelectFieldSql("SELECT attack FROM CharactorBase WHERE id="+id).ToString());
+		attackOfAera = float.Parse (ShareDataBase.sDb.SelectFieldSql("SELECT attackOfAera FROM CharactorBase WHERE id="+id).ToString());
+		attackSpeed = float.Parse (ShareDataBase.sDb.SelectFieldSql("SELECT attackSpeed FROM CharactorBase WHERE id="+id).ToString());
+		moveSpeed = float.Parse (ShareDataBase.sDb.SelectFieldSql("SELECT moveSpeed FROM CharactorBase WHERE id="+id).ToString());
+=======
 	public CharacterBase (int id, Animator ant, AudioSource aud)
 	{
 		name = ShareDataBase.sDb.SelectFieldSql ("SELECT name FROM CharactorBase WHERE id=" + id).ToString ();
@@ -126,10 +168,16 @@ public class CharacterBase : MonoBehaviour
 		attackOfAera = float.Parse (ShareDataBase.sDb.SelectFieldSql ("SELECT attackOfAera FROM CharactorBase WHERE id=" + id).ToString ());
 		attackSpeed = float.Parse (ShareDataBase.sDb.SelectFieldSql ("SELECT attackSpeed FROM CharactorBase WHERE id=" + id).ToString ());
 		moveSpeed = float.Parse (ShareDataBase.sDb.SelectFieldSql ("SELECT moveSpeed FROM CharactorBase WHERE id=" + id).ToString ());
+>>>>>>> db9ece4fccad673d01368ab9220e3d1a9291fde0
 	}
 
 	#endregion
 
+<<<<<<< HEAD
+
+
+
+=======
 	#region 公共方法
 
 	/// <summary>
@@ -203,5 +251,6 @@ public class CharacterBase : MonoBehaviour
 	}
 
 	#endregion
+>>>>>>> db9ece4fccad673d01368ab9220e3d1a9291fde0
 
 }

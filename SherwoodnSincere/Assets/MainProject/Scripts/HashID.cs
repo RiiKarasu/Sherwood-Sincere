@@ -18,14 +18,10 @@ public class HashID:MonoBehaviour{
 	public static int UnderAttack;
 	public static int MoveSpeed;
 	public static int PlayerDeath;
-	public static int Enemy;
-	public static int Allies;
 
 void Start () {
 		UnderAttack = Animator.StringToHash ("UnderAttack");
 		MoveSpeed = Animator.StringToHash ("Speed");
 		PlayerDeath= Animator.StringToHash ("isDead");
-		Enemy = "Enemy";
-		Allies = "Allies";
 }
 }
