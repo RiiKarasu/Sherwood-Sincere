@@ -61,8 +61,8 @@ public class SkillBase : MonoBehaviour {
 	/// <param name="damage">伤害.</param>
 	/// <param name="msDown">减移速效果.</param>
 	/// <param name="asDown">减攻速效果.</param>
-	public void InitSkill(float area,float damage,float msDown,float asDown){
-		skillEffect= new EffectBase (area,damage,msDown,asDown);
+	public void InitSkill(float area,float damage,float lastDamage,float msDown,float asDown){
+		skillEffect= new EffectBase (area,damage,lastDamage,msDown,asDown);
 	}
 	/// <summary>
 	/// 初始化技能效果--无弹道技能
@@ -72,8 +72,8 @@ public class SkillBase : MonoBehaviour {
 	/// <param name="damage">伤害.</param>
 	/// <param name="msDown">减移速效果.</param>
 	/// <param name="asDown">减攻速效果.</param>
-	public void InitSkill(float area,GameObject pathPrefab,float damage,float msDown,float asDown){
-		skillEffect= new EffectBase (area,pathPrefab,damage,msDown,asDown);
+	public void InitSkill(float area,GameObject pathPrefab,float damage,float lastDamage,float msDown,float asDown){
+		skillEffect= new EffectBase (area,pathPrefab,damage,lastDamage,msDown,asDown);
 	}
 	/// <summary>
 	/// 指向性技能释放

@@ -56,7 +56,7 @@ public class EffectBase : MonoBehaviour {
 	/// <param name="damage">伤害值</param>
 	/// <param name="msDown">移速减少值</param>
 	/// <param name="asDown">攻速减少值</param>
-	EffectBase(float area,GameObject pathPrefab,float damage,float lastDamage,float msDown,float asDown){
+	public EffectBase(float area,GameObject pathPrefab,float damage,float lastDamage,float msDown,float asDown){
 		this.effectArea = area;
 		this.pathPrefab = pathPrefab;
 		this.damage = damage;
@@ -71,7 +71,7 @@ public class EffectBase : MonoBehaviour {
 	/// <param name="damage">伤害值</param>
 	/// <param name="msDown">移速减少值</param>
 	/// <param name="asDown">攻速减少值</param>
-	EffectBase(float area,float damage,float lastDamage,float msDown,float asDown){
+	public EffectBase(float area,float damage,float lastDamage,float msDown,float asDown){
 		this.effectArea = area;
 		this.damage = damage;
 		this.lastDamage = lastDamage;
@@ -96,7 +96,7 @@ public class EffectBase : MonoBehaviour {
 				Collider[] targets = Physics.OverlapSphere (target, effectArea);
 				if (target!=null) {
 					foreach (Collider item in targets) {
-						if (item.tag.Equals(HashID.Enemy)) {
+						if (item.tag.Equals(Tags.Enemy)) {
 							SkillAction (item.GetComponent<GameObject>());
 						}
 					}
@@ -116,14 +116,13 @@ public class EffectBase : MonoBehaviour {
 		if (pathPrefab != null) {
 			GameObject path = Instantiate (pathPrefab, transform.position, Quaternion.identity)as GameObject;
 			path.GetComponent<NavMeshAgent> ().SetDestination (target.transform.position);
-			if (Vector3.Distance (path.transform.position, target) < 0.1f) {
+			if (Vector3.Distance (path.transform.position, target.transform.position) < 0.1f) {
 				SkillAction (target);
 				Destroy (path);
 			}
 		}
 	}
-
-
+		
 	#endregion
 
 	#region 私有方法
@@ -132,12 +131,11 @@ public class EffectBase : MonoBehaviour {
 	/// </summary>
 	/// <param name="target">Target.</param>
 	private void SkillAction(GameObject target){
-		CharactorPrivate targetCharactor = target.GetComponent<CharactorPrivate> ();
+		CharacterAction targetCharactor = target.GetComponent<CharacterAction> ();
 		targetCharactor.UnderAttack (damage);
 		targetCharactor.EffectTimeCast (moveSpeedDown,attackSpeedDown,lastDamage,effectTime);
-
 	}
-
+	                                                                                                                                                                                                                                                                                                                                                                                                                
 	#endregion
 
 }
