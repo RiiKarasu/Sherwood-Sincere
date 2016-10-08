@@ -3,29 +3,16 @@
 *********************************************************************************************************/
 
 /*********************************************************************************************************
-文件名（File Name）:   HashID.cs
+文件名（File Name）:   CharactorPrivate.cs
 
 作者（Author）:    #山鬼灵镜#
 
-创建时间（CreateTime）:  9/29/2016 1:27:45 PM
+创建时间（CreateTime）:  10/8/2016 10:07:55 AM
 *********************************************************************************************************/
 
 using UnityEngine;
 using System.Collections;
 
-public class HashID:MonoBehaviour{			
-	
-	public static int UnderAttack;
-	public static int MoveSpeed;
-	public static int PlayerDeath;
-	public static int Enemy;
-	public static int Allies;
+public class CharactorPrivate : CharacterBase {			
 
-void Start () {
-		UnderAttack = Animator.StringToHash ("UnderAttack");
-		MoveSpeed = Animator.StringToHash ("Speed");
-		PlayerDeath= Animator.StringToHash ("isDead");
-		Enemy = "Enemy";
-		Allies = "Allies";
-}
 }
