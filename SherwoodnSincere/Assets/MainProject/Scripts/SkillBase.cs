@@ -12,7 +12,7 @@
 
 using UnityEngine;
 using System.Collections;
-
+//
 public class SkillBase : MonoBehaviour {			
 
 	#region 技能字段
