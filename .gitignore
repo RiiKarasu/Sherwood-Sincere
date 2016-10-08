@@ -17,8 +17,6 @@ ExportedObj/
 *.pidb
 *.booproj
 *.svd
-\SherwoodnSincere\Library
-
 
 # Unity3D generated meta files
 *.pidb.meta
