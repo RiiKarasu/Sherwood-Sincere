@@ -48,10 +48,10 @@ public class ShareDataBase
 		string dataPath = "Data Source =" + Application.streamingAssetsPath + "/BasicDataBase.sqlite";
 		#elif  UNITY_IPHONE
 		string dataPath = "Data Source =" + Application.persistentDataPath+"/BasicDataBase.sqlite";
-		#elif  UNITY_ANDRIOD
-		string dataPath = "URI = file:"+Application.persistentDataPath+"/BasicDataBase.sqlite";
+		#elif  UNITY_ANDROID
+ 		string dataPath = "URI = file:"+Application.persistentDataPath+"/BasicDataBase.sqlite";
 		#endif
-
+        
 		try {
 			if (m_con == null) {
 				m_con = new SqliteConnection (dataPath);
